@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>{% block title %}{% endblock %} - NSMM</title>
+
+  <!-- CSS  -->
+  <link href="{% static "css/materialize.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static "css/style.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header>
+      <ul id="dropdown{{department.id}}" class="dropdown-content">
+        {% for task in department.task_set.all %}
+        <li class="bold"><a href="/department/{{department.id}}/task/{{task.id}}" class="waves-effect waves-teal">{{task.name}}</a></li>
+        {% endfor %}
+      </ul>
+      <div class="navbar-fixed">
+      <nav class="black-text top-nav red ">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a class="head">{{ title }}</a>
+            <ul class="header-list right">
+              <li><a href="/">Home</a></li>
+              <li><a href="/filter">Filter</a></li>
+              <li><a href="/changepassword">Change Password</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </div>
+    </header>
+    <main class="{% block main_class %}dashboard{% endblock %}">
+      <div class="container">
+        {% block departments %}
+        <div class="row">
+          <div class="col l4">
+            <a class="dropdown-button waves-effect waves-light btn-large" href="#" data-activates="dropdown{{department.id}}" ><i id="down" class="mdi-navigation-arrow-drop-down right"></i>{{department.name}}</a>
+          </div>
+        </div>
+        {% endblock %}
+        </div>
+        {% block action-btn %}
+        {% endblock %}
+    </main>
+    <script src="{% static "js/jquery-2.1.1.min.js" %}"></script>
+    <script src="{% static "js/materialize.js" %}"></script>
+    <script src="{% static "js/init.js" %}"></script>
+</body>
+</html>

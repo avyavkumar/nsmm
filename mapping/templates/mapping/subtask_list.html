@@ -1,0 +1,27 @@
+{% extends "mapping/admin_template.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+<ul class="collapsible popout" data-collapsible="accordion">
+  {% for s in subtasks %}
+  <li>
+    <div class="collapsible-header">
+      <p>
+      <span class="list-name red-text">{{ s.name }}</span>
+        <span class="right">
+          <a class="red-text" href="/admin/department/{{ department_id }}/task/{{task_id}}/subtask/{{s.id}}/edit"><i class="tooltipped mdi-content-create tiny" data-position="top" data-delay="50" data-tooltip="Edit Subtask Name "></i></a>
+        </span>
+        <br>
+      </p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block action-btn %}
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <a href="/admin/department/{{ department_id }}/task/{{task_id}}/subtask/new" class="btn-floating btn-large waves-effect waves-light red "><i class="tooltipped mdi-content-add" data-position="top" data-delay="50" data-tooltip="Add New Subtask"></i></a>
+</div>
+{% endblock %}

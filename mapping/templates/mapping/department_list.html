@@ -1,0 +1,28 @@
+{% extends "mapping/admin_template.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+<ul class="collapsible popout" data-collapsible="accordion">
+  {% for d in departments %}
+  <li>
+    <div class="collapsible-header">
+      <p>
+      <span class="list-name red-text">{{ d.name }}</span>
+        <span class="right">
+          <a class="red-text" href="/admin/department/{{ d.id }}/edit"><i class="tooltipped mdi-content-create tiny" data-position="top" data-delay="50" data-tooltip="Edit Department Details" ></i></a>
+          <a class="red-text" href="/admin/department/{{ d.id }}/task"><i class="tooltipped mdi-editor-format-list-numbered tiny" data-position="top" data-delay="50" data-tooltip="List of Tasks in this Department"></i></a>
+        </span>
+        <br>
+      </p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block action-btn %}
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <a href="/admin/department/new" class="btn-floating btn-large waves-effect waves-light red "><i class="tooltipped mdi-content-add" data-position="top" data-delay="50" data-tooltip="Add New Department" ></i></a>
+</div>
+{% endblock %}
